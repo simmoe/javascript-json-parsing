@@ -4,11 +4,11 @@
 Parsing JSON eloquently with javascript is a skill that only gets more crucial, as the use and importance of *online data* increases. These introductory excercises gets you off to a good start.
 
 ### A word on JSON and arrays 
-JSON - the Javascript Object Notation - is a super widely spread standard that is used to describe and exchange data about almost everything. The more you think about it, the more potent this fact is. Anything from school classrooms, to individuals whereabouts, to oceanographic curves and tendencies, to outerspace observations, are mapped and exhanged and manipulated using this format. 
+JSON - the Javascript Object Notation - is a super widely spread standard that is used to describe and exchange data about almost everything. The more you think about it, the more potent this fact is. Anything from school classrooms, to individuals whereabouts, to oceanographic curves and tendencies, to outerspace observations, to you name it, are mapped, exchanged and manipulated in JSON notation. 
 
-Getting philosophical about this fact however, is not the immediate purpose of this excercise. Right hee,we will go directly into practising the most relevant functions at hand, to parse and filter JSON objects.
+Getting philosophical about that is not the immediate purpose of this excercise however. We will move directly into practising the most relevant functions at hand, to parse and filter JSON objects.
 
-Firstly note that JSON objects are most often stored in arrays. Thus the following function walkthrough takes its starting point in iterating arrays, and then move on to iterating arrays storing JSON objects.   
+JSON objects are most often stored in arrays. Thus the following walkthrough begins with iterating arrays, and then move on to iterating arrays storing JSON objects.   
 
 ### The *map* function
 The javascript Array.map() function iterates every element of an array, as in
@@ -24,7 +24,7 @@ const newA = a.map( element => element + 1)
 newA.map( element => console.log(element) )     //2, 3, 4, 5
 ````
 
-So if you have a more complex structure, like an array of JSON objects, you can easily iterte and modify them, using map, like
+So if you have a more complex structure, like an array of JSON objects, you can easily iterate and modify them, using map, like
 
 ````javascript
 const objArray = [
@@ -107,8 +107,44 @@ console.log(characterNames)
 //["harry haller", "paplo", "franz", "lily briscoe", "james ramsay", "charles tansley", "hans castorp", "james tienappel", "munheer peperkorn"]
 ````
 
+## The repository 
+This repo consists of a basic html/javascript setup, but note that *everything is executed in the browser console*. Opening the projects index.html file will just give you a blank page. Head on and downlod the repo to your favorite code editor - the file you will be writing in, is the index.js file. The results of your efforts will be seen in the browser console.
 
-## Tasks
+## The JSON data 
+The data we will be parsing are stored in a local js file and exported at the top of index.js. It has the following structure
+
+````javascript
+export const birdData = {
+    "description": "Birds of Antarctica, grouped by family",
+    "source": "https://en.wikipedia.org/wiki/List_of_birds_of_Antarctica",
+    "birds": [
+        {
+            "family": "Albatrosses",
+            "members": [
+                "Wandering albatross",
+                "Grey-headed albatross",
+                "Black-browed albatross",
+                "Sooty albatross",
+                "Light-mantled albatross"
+            ]
+        },
+        {
+            "family": "Cormorants",
+            "members": [
+                "Antarctic shag",
+                "Imperial shag",
+                "Crozet shag"
+            ]
+        },
+        ...
+````
+As you can see birdData is a JSON object including some preliminary properties, and thereafter an array of JSON objects describing Birds of antarctica (btw these data comes from the excellent <a href ="https://github.com/dariusk/corpora">corpora repo</a>).
+
+Using the functions described above, you will be able to sole the following tasks. If you get *really* stuck, you can see solution suggestions in the solutions.js file. 
+
+Happy hacking - go change the world
+
+### Tasks
 
 1. log the description field from birdData
 2. use the javascript map() function to log all bird family names
