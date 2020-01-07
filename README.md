@@ -1,7 +1,14 @@
 # json parsing excercise 
 
 ## Introduction 
-Parsin JSON eloquently with javascript is a skill that only get s more crucial, as the use and importance of *data* increases. These introductory excercises gets you off to a good start 
+Parsing JSON eloquently with javascript is a skill that only gets more crucial, as the use and importance of *online data* increases. These introductory excercises gets you off to a good start.
+
+### A word on JSON and arrays 
+JSON - the Javascript Object Notation - is a super widely spread standard that is used to describe and exchange data about almost everything. The more you think about it, the more potent this fact is. Anything from school classrooms, to individuals whereabouts, to oceanographic curves and tendencies, to outerspace observations, are mapped and exhanged and manipulated using this format. 
+
+Getting philosophical about this fact however, is not the immediate purpose of this excercise. Right hee,we will go directly into practising the most relevant functions at hand, to parse and filter JSON objects.
+
+Firstly note that JSON objects are most often stored in arrays. Thus the following function walkthrough takes its starting point in iterating arrays, and then move on to iterating arrays storing JSON objects.   
 
 ### The *map* function
 The javascript Array.map() function iterates every element of an array, as in
@@ -17,6 +24,29 @@ const newA = a.map( element => element + 1)
 newA.map( element => console.log(element) )     //2, 3, 4, 5
 ````
 
+So if you have a more complex structure, like an array of JSON objects, you can easily iterte and modify them, using map, like
+
+````javascript
+const objArray = [
+    {title:'Steppenwolf', author:'Hermann Hesse', pub:1927},
+    {title:'To the Lighthouse', author:'Virginia Wolf', pub:1927},
+    {title:'The Magic Mountain', author:'Thomas Mann', pub:1924}
+    ]
+
+objArray.map(
+    book => console.log( book.title )     
+)
+//Steppenwolf, To the Lighthouse, The Magic Mountain
+````
+
+### The *forEach* function
+The Array.forEach() function iterates every element in the excact same way as map(), but without returning a new array. Thus forEach may be preferable, if you only need to iterate, not manipulate, like
+
+````javascript
+a.forEach( element => console.log(element) )        //1, 2, 3, 4
+````
+If you value not having to many things in your head, use the map() function
+
 ### The *filter* function
 The javascript Array.filter() function also iterates every element of an array, but returns a new array with every element that satisfies a condition, like
 
@@ -25,6 +55,58 @@ a = [1, 2, 3, 4]
 const filtered = a.filter( element => element > 2 )        
 console.log(filtered)                           //1, 2, 3, 4
 ````
+So if we use the above object array as an example, we can use filter like
+````javascript
+const filtered = objArray.filter( book => book.published === 1927 )     
+````
+Filtered now contains the two books that satisfies the condition, and we can use map() to iterate the result, as  
+````javascript
+filtered.map = objArray.filter( book => book.published === 1927 )     
+````
+
+### The *find()* function 
+Array.find() behaves excactly like filter(), but *only returns the first occurence of an element that satisfies the condition, otherwise undefined*. Thus we can use the function to get the first occurence of some element, or simply to check if such en element exists at all, like
+
+````javascript
+objArray.find( book => book.pub === 1927)
+//returns first occurence: {title: "Steppingwolf", author: "Hermann Hesse", pub: 1927}
+objArray.find( book => book.pub === 1930)
+//returns undefined
+````
+
+### The *spread* operator
+The javascript spread operator can be used as a very easy and convenient way to concatenate two arrays. It works like this
+````javascript
+a1 = [1, 2, 3]
+a2 = [4, 5, 6]
+a3 = [...a1, ...a2]
+console.log(a3)                     //[1, 2, 3, 4, 5, 6]
+````
+Often we need to create new arrays on the fly, in order to ease our parsing. Say we had a more complex JSON structure, with each object carrying a subset of some values:
+
+````javascript
+const objArray = [
+    {title:'Steppenwolf', author:'Hermann Hesse', pub:1927, 
+    characters:['harry haller', 'paplo', 'franz']},
+    {title:'To the Lighthouse', author:'Virginia Wolf', pub:1927, 
+    characters:['lily briscoe', 'james ramsay', 'charles tansley']},
+    {title:'The Magic Mountain', author:'Thomas Mann', pub:1924, 
+    characters:['hans castorp', 'james tienappel', 'munheer peperkorn']}
+    ]
+````
+Admittedly this might be a bit of an odd scenario - but say we wanted to make a list of all character names throughout all books. In this case we could generate a new array, as
+
+````javascript
+let characterNames = []
+objArray.map(
+    book => book.characters.map(
+        character => characterNames = [...characterNames, character]
+    )
+)
+console.log(characterNames)
+//["harry haller", "paplo", "franz", "lily briscoe", "james ramsay", "charles tansley", "hans castorp", "james tienappel", "munheer peperkorn"]
+````
+
 
 ## Tasks
 

@@ -1,3 +1,7 @@
+import {
+    birdData
+} from './birds.js'
+
 //Excercise solutions 
 
 //1
@@ -53,3 +57,4 @@ const antarctics = allBirdMembers.filter(
 )
 
 console.log(antarctics)
+
