@@ -14,7 +14,7 @@ export const birdData = {
                 "Light-mantled albatross"
             ]
         },
-        {
+       {
             "family": "Cormorants",
             "members": [
                 "Antarctic shag",
