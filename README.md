@@ -140,7 +140,7 @@ export const birdData = {
 ````
 As you can see birdData is a JSON object including some preliminary properties, and thereafter an array of JSON objects describing Birds of antarctica (btw these data comes from the excellent <a href ="https://github.com/dariusk/corpora">corpora repo</a>).
 
-Using the functions described above, you will be able to sole the following tasks. If you get *really* stuck, you can see solution suggestions in the solutions.js file. 
+Using the functions described above, you will be able to solve the following tasks. If you get *really* stuck, you can see solution suggestions in the solutions.js file. 
 
 Happy hacking - go change the world
 
